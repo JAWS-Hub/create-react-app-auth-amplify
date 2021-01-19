@@ -13,7 +13,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload Justin.
+            Hello Craig.
           </p>
           <a
             className="App-link"
@@ -30,3 +30,37 @@ class App extends Component {
 }
 
 export default withAuthenticator(App, true);
+'use strict';
+
+const e = React.createElement;
+
+class LikeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { liked: false };
+  }
+
+  render() {
+    if (this.state.liked) {
+      return 'You liked comment number ' + this.props.commentID;
+    }
+
+    return e(
+      'button',
+      { onClick: () => this.setState({ liked: true }) },
+      'Like'
+    );
+  }
+}
+
+// Find all DOM containers, and render Like buttons into them.
+document.querySelectorAll('.like_button_container')
+  .forEach(domContainer => {
+    // Read the comment ID from a data-* attribute.
+    const commentID = parseInt(domContainer.dataset.commentid, 10);
+    ReactDOM.render(
+      e(LikeButton, { commentID: commentID }),
+      domContainer
+    );
+  });
+
