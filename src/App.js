@@ -12,9 +12,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hello Craig.
-          </p>
+          <button>Press me</button>
+const button = document.querySelector('button');
+
+button.onclick = function() {
+  let name = prompt('What is your name?');
+  alert('Hello ' + name + ', nice to see you!');
+}
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -30,37 +34,5 @@ class App extends Component {
 }
 
 export default withAuthenticator(App, true);
-'use strict';
 
-const e = React.createElement;
-
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked comment number ' + this.props.commentID;
-    }
-
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-  }
-}
-
-// Find all DOM containers, and render Like buttons into them.
-document.querySelectorAll('.like_button_container')
-  .forEach(domContainer => {
-    // Read the comment ID from a data-* attribute.
-    const commentID = parseInt(domContainer.dataset.commentid, 10);
-    ReactDOM.render(
-      e(LikeButton, { commentID: commentID }),
-      domContainer
-    );
-  });
 
