@@ -33,6 +33,7 @@ class TodoApp extends React.Component {
           </button>
         </form>
       </div>
+      export default App;
     );
   }
 
