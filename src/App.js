@@ -72,7 +72,3 @@ ReactDOM.render(
   <TodoApp />,
   document.getElementById('todos-example')
 );
-
-export default withAuthenticator(App, true);
-
-
